@@ -8,9 +8,33 @@ services:
       SPRING_PROFILES_ACTIVE: docker
       JWT_SECRET: ${JWT_SECRET:-ZhV3+eY767wZQ4ce+qb8PbwanES3wA8XpBvAkC2ZiVA=}
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009"
+    depends_on:
+      - auth-postgres
     ports:
       - "8084:8080"
       - "5009:5009"
     command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009", "-jar", "app.jar"]
     networks:
       - hotel-network
+
+  auth-postgres:
+    image: postgres:15
+    container_name: auth-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: authdb
+      POSTGRES_USER: authuser
+      POSTGRES_PASSWORD: authpass
+    volumes:
+      - authdb_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - hotel-network
+
+volumes:
+  authdb_data:
+
+networks:
+  hotel-network:
+    external: true

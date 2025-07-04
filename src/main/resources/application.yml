@@ -6,11 +6,10 @@ spring:
     allow-circular-references: true
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/hoteldb
-    username: hotelapp
-    password: password
+    url: jdbc:postgresql://auth-postgres:5432/authdb
+    username: authuser
+    password: authpass
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -21,6 +20,15 @@ spring:
 
 server:
   port: 8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
 
 jwt:
   secret: ${JWT_SECRET:ZhV3+eY767wZQ4ce+qb8PbwanES3wA8XpBvAkC2ZiVA=}
