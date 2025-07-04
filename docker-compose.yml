@@ -2,9 +2,9 @@ services:
   auth-service:
     build: .
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hoteldb
-      SPRING_DATASOURCE_USERNAME: hotelapp
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://auth-postgres:5432/authdb
+      SPRING_DATASOURCE_USERNAME: authuser
+      SPRING_DATASOURCE_PASSWORD: authpass
       SPRING_PROFILES_ACTIVE: docker
       JWT_SECRET: ${JWT_SECRET:-ZhV3+eY767wZQ4ce+qb8PbwanES3wA8XpBvAkC2ZiVA=}
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009"
