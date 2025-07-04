@@ -13,12 +13,17 @@ services:
     ports:
       - "8084:8080"
       - "5009:5009"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     command: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009", "-jar", "app.jar"]
     networks:
       - hotel-network
 
   auth-postgres:
-    image: postgres:15
+    image: postgres:17-alpine
     container_name: auth-postgres
     restart: always
     environment:
