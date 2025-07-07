@@ -1,6 +1,7 @@
 package com.hotelapp.auth.controller;
 
 import com.hotelapp.auth.dto.AuthRequestDTO;
+import com.hotelapp.auth.dto.AuthResponseDTO;
 import com.hotelapp.auth.dto.LoginRequestDTO;
 import com.hotelapp.auth.service.AuthService;
 import jakarta.validation.Valid;
@@ -23,12 +24,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody AuthRequestDTO request) {
+    public ResponseEntity<AuthResponseDTO> register(@Valid @RequestBody AuthRequestDTO request) {
         return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody LoginRequestDTO request) {
+    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
         return ResponseEntity.ok(authService.login(request));
     }
 }
