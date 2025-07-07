@@ -31,14 +31,14 @@ services:
       POSTGRES_USER: authuser
       POSTGRES_PASSWORD: authpass
     volumes:
-      - authdb_data:/var/lib/postgresql/data
+      - auth-db-data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     networks:
       - hotel-network
 
 volumes:
-  authdb_data:
+  auth-db-data:
 
 networks:
   hotel-network:
