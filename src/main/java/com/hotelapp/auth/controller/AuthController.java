@@ -4,6 +4,7 @@ import com.hotelapp.auth.dto.AuthRequestDTO;
 import com.hotelapp.auth.dto.AuthResponseDTO;
 import com.hotelapp.auth.dto.LoginRequestDTO;
 import com.hotelapp.auth.service.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.register(request));
     }
 
+    @Operation(security = {})
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
         return ResponseEntity.ok(authService.login(request));

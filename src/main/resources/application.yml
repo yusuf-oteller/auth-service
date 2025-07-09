@@ -25,6 +25,14 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /docs/auth/v3/api-docs
+  swagger-ui:
+    enabled: false
+    path: /docs/auth/swagger-ui.html
+
 server:
   port: 8084
 
